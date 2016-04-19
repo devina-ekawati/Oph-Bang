@@ -6,7 +6,7 @@ public class GenerateEnemyController : MonoBehaviour {
     public GameObject enemy;
 
     private float timeElapsed = 0;
-    private float generateCycle = 0.5f;
+    private float generateCycle = 2f;
 
 	// Use this for initialization
 	void Start () {
@@ -22,6 +22,7 @@ public class GenerateEnemyController : MonoBehaviour {
     {
         GameObject temp = (GameObject)Instantiate(enemy);
         Vector3 pos = temp.transform.position;
-        temp.transform.position = new Vector3(Random.Range(-3, 4), pos.y, pos.z);
+        int x = ((int)Random.Range(-1, 1)) * 5;
+        temp.transform.position = new Vector3(x, pos.y-5, pos.z);        
     }
 }

@@ -8,10 +8,23 @@ public class EnemyController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         startPosition = transform.position;
+        StartCoroutine(MoveEnemyFunction());
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        transform.Translate(startPosition.x, startPosition.y, startPosition.z + 0.01f);
+        
 	}
+
+    IEnumerator MoveEnemyFunction()
+    {
+        yield return new WaitForSeconds(0.1f);
+        MoveEnemy();
+        StartCoroutine(MoveEnemyFunction());
+    }
+
+    void MoveEnemy()
+    {
+        transform.Translate(0,-0.02f, -0.3f);
+    }
 }
