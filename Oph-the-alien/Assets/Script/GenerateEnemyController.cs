@@ -22,7 +22,7 @@ public class GenerateEnemyController : MonoBehaviour {
     {
         GameObject temp = (GameObject)Instantiate(enemy);
         Vector3 pos = temp.transform.position;
-        int x = ((int)Random.Range(-1, 1)) * 5;
+        int x = ((int)Random.Range(-1, 2)) * 5;
         temp.transform.position = new Vector3(x, pos.y-5, pos.z);        
     }
 }
