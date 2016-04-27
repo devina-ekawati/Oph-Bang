@@ -4,6 +4,8 @@ using System.Collections;
 public class Trigger : MonoBehaviour
 {
 
+	public GameObject GameControl;
+
     // Use this for initialization
     void Start()
     {
@@ -21,7 +23,8 @@ public class Trigger : MonoBehaviour
         Debug.Log("Trigger");
         if (other.tag == "Enemy")
         {
-            Debug.Log(" Health berkurang");
+            Debug.Log("Health berkurang");
+			GameControl.GetComponent<GameControl>().health = GameControl.GetComponent<GameControl>().health - 10f;
         }
         Destroy(other.gameObject);
     }
