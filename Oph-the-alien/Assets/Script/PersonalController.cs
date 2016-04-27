@@ -12,6 +12,9 @@ public class PersonalController : MonoBehaviour {
 	public Sprite []hat, upper, lower, shoes;
 	private int popupon;
 	public Image [] body;
+	public AudioClip backMusic; 
+	public GameObject disable;
+	AudioSource fxSound; 
 	// Use this for initialization
 	void Start () {
 		popupon = -1;
@@ -27,12 +30,27 @@ public class PersonalController : MonoBehaviour {
 		body [3].sprite = shoes [PlayerPrefs.GetInt ("shoes")];
 		Dressing ();
 
+		fxSound = GetComponent<AudioSource> ();
+		if (PlayerPrefs.GetInt ("sound") == 0) {
+			fxSound.Play ();
+		}
 		for (int i=0; i< popup.Length; i++) {
 			popup[i].SetActive(false);
 		}
 		close.SetActive (false);
 	}
-	
+	public void SetSound(){
+		if (PlayerPrefs.GetInt ("sound")== 1) {
+			PlayerPrefs.SetInt ("sound", 0);
+			disable.SetActive (false);
+			fxSound.Play ();
+		}
+		else {
+			PlayerPrefs.SetInt ("sound", 1);
+			disable.SetActive (true);
+			fxSound.Stop();
+		}
+	}
 	// Update is called once per frame
 	void Update () {
 
@@ -42,8 +60,11 @@ public class PersonalController : MonoBehaviour {
 			showSubMenu = false;
 		else
 			showSubMenu = true;
-
 		SubMenu.SetActive (showSubMenu);
+		if (PlayerPrefs.GetInt ("sound")==1)
+			disable.SetActive (true);
+		else
+			disable.SetActive (false);
 	}
 	public void ShowPopUp(int i){
 		Debug.Log (i);
@@ -87,6 +108,9 @@ public class PersonalController : MonoBehaviour {
 		body [1].sprite = upper [PlayerPrefs.GetInt ("upper")];
 		body [2].sprite = lower [PlayerPrefs.GetInt ("lower")];
 		body [3].sprite = shoes [PlayerPrefs.GetInt ("shoes")];
+	}
+	public void OpenMap(){
+		Application.LoadLevel("SelectScene");
 	}
 
 
