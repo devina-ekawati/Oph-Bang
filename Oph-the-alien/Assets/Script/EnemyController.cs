@@ -36,6 +36,7 @@ public class EnemyController : MonoBehaviour {
 		{
 			Debug.Log ("Musuh Kena senjata");
 			health -= 10;
+			Destroy(other.gameObject);
 		}
 		if (health <= 0)
 			Destroy (this.gameObject);

@@ -13,6 +13,7 @@ public class GameControl : MonoBehaviour {
 
 	bool paused = false;
 	GameObject[] fixedObjects;
+	AudioSource fxSound; 
 
 	int position;
 	float totalTimeElapsed = 0;
@@ -24,12 +25,16 @@ public class GameControl : MonoBehaviour {
 		Time.timeScale = 1;
         position = 0;
 		fixedObjects = GameObject.FindGameObjectsWithTag("Fixed");
+		fxSound = GetComponent<AudioSource> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (isGameOver)
 		{
+			if (Input.GetKeyDown (KeyCode.Escape)) {
+				Application.LoadLevel("personal");
+			}
 			return;
 		}
 		time.text = "" + (int)totalTimeElapsed;

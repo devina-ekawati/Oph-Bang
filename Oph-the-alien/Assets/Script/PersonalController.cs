@@ -4,7 +4,7 @@ using System.Collections;
 
 
 public class PersonalController : MonoBehaviour {
-	public GameObject SubMenu, close;
+	public GameObject SubMenu, close, shadow;
 	private bool showSubMenu = false;
 	public Text name, diamond, money;
 	public InputField NewName;
@@ -19,6 +19,7 @@ public class PersonalController : MonoBehaviour {
 	void Start () {
 		popupon = -1;
 		SubMenu.SetActive (showSubMenu);
+		shadow.SetActive (false);
 		name.text = "" + PlayerPrefs.GetString("PlayerName");
 		diamond.text = "" + PlayerPrefs.GetInt ("PlayerDiamond");
 		money.text = "" + PlayerPrefs.GetInt ("PlayerMoney");
@@ -53,7 +54,9 @@ public class PersonalController : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () {
-
+		if (Input.GetKeyDown (KeyCode.Escape)) {
+			Application.LoadLevel("Startgame");
+		}
 	}
 	public void ShowSubMenu(){
 		if (showSubMenu)
@@ -68,13 +71,17 @@ public class PersonalController : MonoBehaviour {
 	}
 	public void ShowPopUp(int i){
 		Debug.Log (i);
-		if (popupon != -1)
+		if (popupon != -1) {
 			popup [popupon].SetActive (false);
+
+		}
 		popup [i].SetActive (true);
+		shadow.SetActive (true);
 		popupon = i;
 		close.SetActive (true);
 	}
 	public void HidePopUp(){
+		shadow.SetActive (false);
 		popup [popupon].SetActive (false);
 		popupon = -1;
 		close.SetActive (false);

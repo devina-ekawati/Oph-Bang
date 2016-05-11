@@ -18,6 +18,9 @@ public class SelectLocation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		if (Input.GetKeyDown (KeyCode.Escape)) {
+			Application.LoadLevel("personal");
+		}
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
         {
             
