@@ -7,7 +7,7 @@ public class Startgame : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		startGame.SetActive (false);
-	}
+	}		
 	
 	// Update is called once per frame
 	void Update () {
@@ -28,6 +28,9 @@ public class Startgame : MonoBehaviour {
 		Application.LoadLevel("personal");
 	}
 	public void NewGame(){
+
+	}
+	public void ShowOption(){
 
 	}
 }

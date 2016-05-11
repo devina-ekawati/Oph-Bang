@@ -11,13 +11,18 @@ public class GameControl : MonoBehaviour {
 	public GameObject resumeButton;
 	public GameObject restartButton;
 
+	float totalTimeElapsed = 0;
+	int position;
 	bool paused = false;
 	GameObject[] fixedObjects;
 	AudioSource fxSound; 
 
-	int position;
-	float totalTimeElapsed = 0;
+	public float healthBarWidth = 0.35f;
+	public float maxHealth = 100f;
 	public float health = 100f;
+	public bool allowLaunchWeapon = true;
+	float lastWeaponLaunched;
+
 	// Use this for initialization
 	void Start () {
 		resumeButton.SetActive (false);
@@ -39,7 +44,7 @@ public class GameControl : MonoBehaviour {
 		}
 		time.text = "" + (int)totalTimeElapsed;
 
-		float lifebarWidth = 0.35f  * (health/100f);
+		float lifebarWidth = healthBarWidth  * (health/100f);
 		float lifebarHeight = lifeBar.transform.localScale.y;
 		float lifebarThick = lifeBar.transform	.localScale.z;
 		lifeBar.transform.localScale = new Vector3(lifebarWidth,lifebarHeight,lifebarThick);
@@ -47,24 +52,9 @@ public class GameControl : MonoBehaviour {
 		//lifeBar.transform.position(-0.00175f*lostHealth,0,0);
 		totalTimeElapsed += Time.deltaTime;
 
-		/*int i = 0;
-	    while (i < Input.touchCount) {
-			Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(i).position);
-			RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.GetTouch(i).position), -Vector2.up);
-
-            Debug.Log("TAP !");
-
-            if (hit.collider != null) {
-				health = 0;
-                if(hit.collider.tag=="Enemy")
-				{
-					health -= 10f;
-                    Debug.Log("HIT BOMB! ");
-					break;
-                }
-            }
-			++i;
-		}*/
+		if  ((totalTimeElapsed - lastWeaponLaunched) > 2) {
+			allowLaunchWeapon = true;
+		}
 
 		if (!paused) {
 			if (Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Moved) {
@@ -96,7 +86,11 @@ public class GameControl : MonoBehaviour {
 				}
 			} else if (Input.touchCount > 0) {
 				//tembak
-				WeaponManager.Instance.SpawnWeapon();
+				if(Input.GetTouch(0).phase == TouchPhase.Began && allowLaunchWeapon){
+					WeaponManager.Instance.SpawnWeapon();
+					allowLaunchWeapon = false;
+					lastWeaponLaunched = totalTimeElapsed;
+				}
 			}
 		}
 
@@ -111,14 +105,14 @@ public class GameControl : MonoBehaviour {
 	}
 
 
-	public void pauseGame(){
+	public void pauseGame () {
 		resumeButton.SetActive (true);
 		restartButton.SetActive (true);
 		Debug.Log ("pause game");
 		paused = true;
 	}
 
-	public void resumeGame(){
+	public void resumeGame () {
 		resumeButton.SetActive (false);
 		restartButton.SetActive (false);
 		Debug.Log ("resume game");

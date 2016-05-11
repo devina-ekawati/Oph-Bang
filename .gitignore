@@ -1,4 +1,7 @@
+<<<<<<< HEAD
+=======
 
+>>>>>>> b8ad5492bfce454ffeb879a88b4540d59ba850a7
 # Created by https://www.gitignore.io/api/uni,unity
 
 #!! ERROR: uni is undefined. Use list command to see defined gitignore types !!#
@@ -33,4 +36,8 @@ sysinfo.txt
 
 # Builds
 *.apk
+<<<<<<< HEAD
 *.unitypackage
+=======
+*.unitypackage
+>>>>>>> b8ad5492bfce454ffeb879a88b4540d59ba850a7

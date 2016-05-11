@@ -3,6 +3,8 @@ using System.Collections;
 
 public class EnemyController : MonoBehaviour {
 
+	public GameObject GameControl;
+
     private Vector3 startPosition;
 	public int health = 20;
 
@@ -35,8 +37,10 @@ public class EnemyController : MonoBehaviour {
 		if (other.tag == "Weapon")
 		{
 			Debug.Log ("Musuh Kena senjata");
-			health -= 10;
-			Destroy(other.gameObject);
+			health -= 10; //reduce enemy's health
+			Destroy (other.gameObject);
+			Debug.Log ("allow2");
+			GameControl.GetComponent<GameControl>().allowLaunchWeapon = true;
 		}
 		if (health <= 0)
 			Destroy (this.gameObject);
