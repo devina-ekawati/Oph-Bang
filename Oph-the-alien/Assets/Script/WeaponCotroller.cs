@@ -25,7 +25,7 @@ public class WeaponCotroller : MonoBehaviour {
 	
 	void MoveWeapon()
 	{
-		transform.Translate(0,0.02f, 0.3f);
+		transform.Translate(0,0.2f, 3f);
 	}
 	
 }

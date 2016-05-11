@@ -21,11 +21,17 @@ public class Trigger : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         Debug.Log("Trigger");
-        if (other.tag == "Enemy")
-        {
-            Debug.Log("Health berkurang");
-			GameControl.GetComponent<GameControl>().health = GameControl.GetComponent<GameControl>().health - 10f;
-        }
+        if (other.tag == "Enemy") {
+			Debug.Log ("Health berkurang");
+			float reduceHealth = 10f;
+			GameControl.GetComponent<GameControl>().health = GameControl.GetComponent<GameControl> ().health - reduceHealth;
+			float healthBarWidth = GameControl.GetComponent<GameControl>().healthBarWidth;
+			float maxHealth = GameControl.GetComponent<GameControl>().maxHealth;
+			GameControl.GetComponent<GameControl>().lifeBar.transform.Translate(new Vector3(-reduceHealth/maxHealth * healthBarWidth, 0.0f, 0.0f));
+		} else if (other.tag == "Weapon") {
+			Debug.Log ("allow");
+			GameControl.GetComponent<GameControl>().allowLaunchWeapon = true;
+		}
         Destroy(other.gameObject);
     }
 }
