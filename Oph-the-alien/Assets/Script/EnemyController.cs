@@ -41,7 +41,6 @@ public class EnemyController : MonoBehaviour {
 			Destroy (other.gameObject);
 			Debug.Log ("allow2");
 			GameControl.GetComponent<GameControl>().allowLaunchWeapon = true;
-
 		}
 		if (health <= 0)
 			Destroy (this.gameObject);

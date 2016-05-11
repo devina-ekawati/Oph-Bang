@@ -15,6 +15,7 @@ public class GameControl : MonoBehaviour {
 	int position;
 	bool paused = false;
 	GameObject[] fixedObjects;
+	AudioSource fxSound; 
 
 	public float healthBarWidth = 0.35f;
 	public float maxHealth = 100f;
@@ -29,13 +30,16 @@ public class GameControl : MonoBehaviour {
 		Time.timeScale = 1;
         position = 0;
 		fixedObjects = GameObject.FindGameObjectsWithTag("Fixed");
-
+		fxSound = GetComponent<AudioSource> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (isGameOver)
 		{
+			if (Input.GetKeyDown (KeyCode.Escape)) {
+				Application.LoadLevel("personal");
+			}
 			return;
 		}
 		time.text = "" + (int)totalTimeElapsed;
