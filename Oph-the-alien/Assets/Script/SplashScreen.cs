@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using System.Collections;
 
 public class SplashScreen : MonoBehaviour {
@@ -37,7 +37,7 @@ public class SplashScreen : MonoBehaviour {
 
         if (alpha == 0)
         {
-            SceneManager.LoadScene(levelToLoad);
+            Application.LoadLevel(levelToLoad);
         }
 
         

@@ -40,7 +40,7 @@ public class Startgame : MonoBehaviour {
 		PlayerPrefs.DeleteKey("PlayerName");
 		PlayerPrefs.DeleteKey("PlayerDiamond");
 		PlayerPrefs.DeleteKey("PlayerMoney");
-		Application.LoadLevel("newgame");
+		Application.LoadLevel("NewGame");
 	}
 	public void HideConfirmation(){
 		confirmation.SetActive (false);
