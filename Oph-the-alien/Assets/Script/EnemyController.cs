@@ -5,18 +5,36 @@ public class EnemyController : MonoBehaviour {
 
 	public GameObject GameControl;
 
+	private float speed = 1;
     private Vector3 startPosition;
 	public int health = 20;
 
+	float totalTimeElapsed = 0;
+	float freezeStart = 0;
+	float lastPoisonReduced = 0;
+	bool isFreeze = false;
+	bool isPoisoned = false;
+
 	// Use this for initialization
 	void Start () {
+		Time.timeScale = 1;
         startPosition = transform.position;
         StartCoroutine(MoveEnemyFunction());
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        
+		if (isFreeze) { 
+			if((totalTimeElapsed - freezeStart) > 3){//3detik
+				isFreeze = false;
+			}
+		}
+		if (isPoisoned) {
+			if((totalTimeElapsed - lastPoisonReduced) < 2){//2 detik
+				health -= 2;
+				lastPoisonReduced = totalTimeElapsed;
+			}
+		}
 	}
 
     IEnumerator MoveEnemyFunction()
@@ -28,7 +46,8 @@ public class EnemyController : MonoBehaviour {
 
     void MoveEnemy()
     {
-        transform.Translate(0,-0.02f, -0.3f);
+		if(!isFreeze)
+        	transform.Translate(0,-0.02f*speed, -0.3f*speed);
     }
 
 	void OnTriggerEnter(Collider other)
@@ -37,9 +56,28 @@ public class EnemyController : MonoBehaviour {
 		if (other.tag == "Weapon")
 		{
 			Debug.Log ("Musuh Kena senjata");
-			health -= 10; //reduce enemy's health
+			int weaponID = GameControl.GetComponent<GameControl>().curWeaponID;
+			switch(weaponID){
+				case 0: //default weapon
+					health -= 10;
+					break;
+				case 1: //jadi lambat
+					speed *= 0.8f;
+					break;
+				case 2: //jadi freeze
+					freezeStart = totalTimeElapsed;
+					isFreeze = true;
+					break;
+				case 3: //kena poison
+					isPoisoned = true;
+					lastPoisonReduced = totalTimeElapsed;
+					break;
+				case 4: //hammer
+					health -= 20;
+					break;
+			}
 			Destroy (other.gameObject);
-			Debug.Log ("allow2");
+			//Debug.Log ("allow2");
 			GameControl.GetComponent<GameControl>().allowLaunchWeapon = true;
 		}
 		if (health <= 0)

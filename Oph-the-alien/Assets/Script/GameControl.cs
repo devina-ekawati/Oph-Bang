@@ -10,6 +10,9 @@ public class GameControl : MonoBehaviour {
 	public bool isGameOver = false;
 	public GameObject resumeButton;
 	public GameObject restartButton;
+	public GameObject settingsButton;
+	public GameObject homeButton;
+	public GameObject pausedScreenGameplay;
 
 	float totalTimeElapsed = 0;
 	int position;
@@ -22,11 +25,12 @@ public class GameControl : MonoBehaviour {
 	public float health = 100f;
 	public bool allowLaunchWeapon = true;
 	float lastWeaponLaunched;
+	private int curWeaponType = 0; //weapon yg sedang dipake (dari weapon yg dipilih)
+	public int curWeaponID = 0; //id weapon (dari semua weapon)
 
 	// Use this for initialization
 	void Start () {
-		resumeButton.SetActive (false);
-		restartButton.SetActive (false);
+		hideMenu ();
 		Time.timeScale = 1;
         position = 0;
 		fixedObjects = GameObject.FindGameObjectsWithTag("Fixed");
@@ -87,9 +91,10 @@ public class GameControl : MonoBehaviour {
 			} else if (Input.touchCount > 0) {
 				//tembak
 				if(Input.GetTouch(0).phase == TouchPhase.Began && allowLaunchWeapon){
-					WeaponManager.Instance.SpawnWeapon();
+					WeaponManager.Instance.SpawnWeapon(curWeaponType);
 					allowLaunchWeapon = false;
 					lastWeaponLaunched = totalTimeElapsed;
+					curWeaponType = 0;
 				}
 			}
 		}
@@ -104,25 +109,44 @@ public class GameControl : MonoBehaviour {
 		}
 	}
 
+	public void useItem (int id){
+		curWeaponType = id;
+	}
 
 	public void pauseGame () {
 		resumeButton.SetActive (true);
 		restartButton.SetActive (true);
-		Debug.Log ("pause game");
+		settingsButton.SetActive (true);
+		homeButton.SetActive (true);
+		pausedScreenGameplay.SetActive (true);
 		paused = true;
 	}
 
+	public void hideMenu () {
+		GameObject[] pauseObjects = GameObject.FindGameObjectsWithTag ("PauseMenu");
+		for (int i = 0; i < pauseObjects.Length; i++) {
+			pauseObjects [i].SetActive (false);
+		}
+		Debug.Log ("lengthz" + pauseObjects.Length);
+	}
+
 	public void resumeGame () {
-		resumeButton.SetActive (false);
-		restartButton.SetActive (false);
-		Debug.Log ("resume game");
+		hideMenu ();
 		paused = false;
 	}
 
-	public void restartGame(){
-		resumeButton.SetActive (false);
-		restartButton.SetActive (false);
-		Debug.Log ("restart game");
+	public void restartGame () {
+		hideMenu ();
 		Application.LoadLevel ("Battle");
 	}
+
+	public void goToHome () {
+		hideMenu ();
+		Application.LoadLevel ("personal");
+	}
+
+	public void goToSettings () {
+		//Not implemented
+	}
+
 }
