@@ -4,10 +4,16 @@ using System.Collections;
 
 public class Startgame : MonoBehaviour {
 	public GameObject startGame;
+	public GameObject confirmation;
+	public GameObject loadButton;
 	// Use this for initialization
 	void Start () {
+		if (PlayerPrefs.HasKey("PlayerName")) {
+			//loadButton.button.interactiable = false;
+		}
 		startGame.SetActive (false);
-	}
+		confirmation.SetActive (false);
+	}		
 	
 	// Update is called once per frame
 	void Update () {
@@ -17,6 +23,9 @@ public class Startgame : MonoBehaviour {
 	}
 	public void StartGame(){
 		startGame.SetActive (true);
+	}
+	public void HideStartGame(){
+		startGame.SetActive (false);
 	}
 	public void ExitGame() {
 		Application.Quit ();
@@ -28,6 +37,15 @@ public class Startgame : MonoBehaviour {
 		Application.LoadLevel("personal");
 	}
 	public void NewGame(){
-
+		PlayerPrefs.DeleteKey("PlayerName");
+		PlayerPrefs.DeleteKey("PlayerDiamond");
+		PlayerPrefs.DeleteKey("PlayerMoney");
+		Application.LoadLevel("NewGame");
+	}
+	public void HideConfirmation(){
+		confirmation.SetActive (false);
+	}
+	public void ShowConfirmation(){
+		confirmation.SetActive (true);
 	}
 }
