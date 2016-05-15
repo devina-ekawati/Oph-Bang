@@ -13,7 +13,10 @@ public class GameControl : MonoBehaviour {
 	public GameObject settingsButton;
 	public GameObject homeButton;
 	public GameObject pausedScreenGameplay;
-
+	public GameObject buttonItem1;
+	public GameObject buttonItem2;
+	public GameObject buttonItem3;
+	public GameObject buttonItem4;
 	float totalTimeElapsed = 0;
 	int position;
 	bool paused = false;
@@ -111,6 +114,20 @@ public class GameControl : MonoBehaviour {
 
 	public void useItem (int id){
 		curWeaponType = id;
+		switch (id) {
+			case 1:
+				buttonItem1.SetActive(false);
+				break;
+			case 2:
+				buttonItem2.SetActive(false);
+				break;
+			case 3:
+				buttonItem3.SetActive(false);
+				break;
+			case 4:
+				buttonItem4.SetActive(false);
+				break;
+		}
 	}
 
 	public void pauseGame () {
