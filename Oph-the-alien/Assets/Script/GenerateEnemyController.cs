@@ -8,7 +8,7 @@ public class GenerateEnemyController : MonoBehaviour {
 	public GameObject enemyBigKid;
 
     private float timeElapsed = 0;
-    private float generateCycle = 2f;
+    private float generateCycle = 5f;
 
 	// Use this for initialization
 	void Start () {

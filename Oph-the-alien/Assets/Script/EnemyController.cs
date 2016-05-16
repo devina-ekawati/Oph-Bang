@@ -17,6 +17,7 @@ public class EnemyController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		GameControl = GameObject.Find("Main Camera");
 		Time.timeScale = 1;
         startPosition = transform.position;
         StartCoroutine(MoveEnemyFunction());

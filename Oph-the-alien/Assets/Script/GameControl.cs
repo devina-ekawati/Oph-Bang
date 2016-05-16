@@ -42,6 +42,8 @@ public class GameControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+	//if(allowLaunchWeapon)
+	//WeaponManager.Instance.SpawnWeapon(curWeaponType);
 		if (isGameOver)
 		{
 			if (Input.GetKeyDown (KeyCode.Escape)) {
@@ -93,6 +95,7 @@ public class GameControl : MonoBehaviour {
 				}
 			} else if (Input.touchCount > 0) {
 				//tembak
+				Debug.Log("Spawn Weapon");
 				if(Input.GetTouch(0).phase == TouchPhase.Began && allowLaunchWeapon){
 					WeaponManager.Instance.SpawnWeapon(curWeaponType);
 					allowLaunchWeapon = false;
