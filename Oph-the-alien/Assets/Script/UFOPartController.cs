@@ -4,14 +4,19 @@ using System.Collections;
 public class UFOPartController : MonoBehaviour {
 
     private int numUFOPart;
-    public GameObject[] UFOPart;
+    public GameObject[] UFOPart, bar;
 
 	// Use this for initialization
 	void Start () {
+		numUFOPart = PlayerPrefs.GetInt("UFOPart");
         int size = UFOPart.Length;
 
-        numUFOPart = PlayerPrefs.GetInt("UFOPart");
-        switch (numUFOPart)
+		for (int i = 2; i< size; i++) {
+			UFOPart[i].SetActive(false);
+			bar[i].SetActive(false);
+		}
+        
+        /*switch (numUFOPart)
         {
             case 0:
                 for (int i = 0; i < size; i++) {
@@ -61,12 +66,14 @@ public class UFOPartController : MonoBehaviour {
                 {
                     UFOPart[i].SetActive(false);
                 }
-                break;
-        }
-	}
-	
-	// Update is called once per frame
+                break;*/
+     }
+
 	void Update () {
-	    
+		if (Input.GetKeyDown (KeyCode.Escape)) {
+			Application.LoadLevel("personal");
+		}
 	}
+
+	
 }

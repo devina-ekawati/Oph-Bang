@@ -27,6 +27,7 @@ public class OpeningStoryController : MonoBehaviour {
             yield return new WaitForSeconds(1);
             
         }
+		Application.LoadLevel ("personal");
     }
 
 }

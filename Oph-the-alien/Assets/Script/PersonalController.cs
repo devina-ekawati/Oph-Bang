@@ -4,21 +4,26 @@ using System.Collections;
 
 
 public class PersonalController : MonoBehaviour {
-	public GameObject SubMenu, close, shadow;
+	public GameObject SubMenu, close, shadow, confirmation;
 	private bool showSubMenu = false;
 	public Text name, diamond, money;
 	public InputField NewName;
-	public GameObject [] popup, itemSelected;
+	public Button [] buttonItem, buyItem;
+	public GameObject [] popup, itemSelected, bar;
 	public Sprite []hat, upper, lower, shoes, item;
 	private int popupon, itemNumberSelected;
 	public Image [] body, selected;
 	public AudioClip backMusic; 
 	public GameObject disable;
+
 	AudioSource fxSound; 
 	// Use this for initialization
 	void Start () {
 		itemNumberSelected = 0;
-		PlayerPrefs.SetInt("UFOPart",3);
+		int temp = PlayerPrefs.GetInt("UFOPart");
+		for (int i = temp; i< bar.Length; i++) {
+			bar[i].SetActive(false);
+		}
 		popupon = -1;
 		SubMenu.SetActive (showSubMenu);
 		shadow.SetActive (false);
@@ -44,20 +49,25 @@ public class PersonalController : MonoBehaviour {
 		}
 		close.SetActive (false);
 	}
+
 	public void DeselectedItem(){
 		for(int i=0; i<4; i++){
 			itemSelected[i].SetActive(false);
 		}
 	}
+
 	public void SelectItem(int number){
 		itemSelected [itemNumberSelected].SetActive (false);
 		itemSelected [number].SetActive (true);
 		itemNumberSelected = number;
 	}
+
 	public void SetItem(int number){
-		selected [itemNumberSelected].sprite = item [number];
+		buttonItem [itemNumberSelected].image.sprite = item [number];
+		//selected [itemNumberSelected].sprite = item [number];
 		PlayerPrefs.SetInt ("item"+itemNumberSelected, number);
 	}
+
 	public void SetSound(){
 		if (PlayerPrefs.GetInt ("sound")== 1) {
 			PlayerPrefs.SetInt ("sound", 0);
@@ -87,8 +97,29 @@ public class PersonalController : MonoBehaviour {
 		else
 			disable.SetActive (false);
 	}
+	public void BuyItemConvirmation(){
+		confirmation.SetActive (true);
+	}
+	public void HideItemConfirmation(){
+		confirmation.SetActive (false);
+	}
+	public void Buy(){
+
+	}
+
+	public void UpdateShop(){
+		int temp = PlayerPrefs.GetInt("UFOPart");
+		for (int i = 0; i< temp; i++) {
+			buyItem[i].GetComponentInChildren<Text>().text ="sold";
+			//buyItem[i].
+			buyItem[i].GetComponent<Button>().interactable = false;
+
+		}
+		HideItemConfirmation ();
+	}
 	public void ShowPopUp(int i){
 		Debug.Log (i);
+
 		if (popupon != -1) {
 			popup [popupon].SetActive (false);
 
@@ -97,6 +128,9 @@ public class PersonalController : MonoBehaviour {
 		shadow.SetActive (true);
 		popupon = i;
 		close.SetActive (true);
+		if (i == 4) {
+			UpdateShop ();
+		}
 	}
 	public void HidePopUp(){
 		shadow.SetActive (false);
@@ -138,7 +172,7 @@ public class PersonalController : MonoBehaviour {
 		Application.LoadLevel("SelectScene");
 	}
 	public void ShowUfo(){
-		Application.LoadLevel ("UFO part");
+		Application.LoadLevel ("ufo");
 	}
 
 
