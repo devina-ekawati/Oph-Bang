@@ -26,6 +26,7 @@ public class GameControl : MonoBehaviour {
 	public float healthBarWidth = 0.35f;
 	public float maxHealth = 100f;
 	public float health = 100f;
+	public int score = 0;
 	public bool allowLaunchWeapon = true;
 	float lastWeaponLaunched;
 	private int curWeaponType = 0; //weapon yg sedang dipake (dari weapon yg dipilih)
@@ -33,6 +34,7 @@ public class GameControl : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		WeaponManager.Instance.SpawnWeapon(curWeaponType);
 		hideMenu ();
 		Time.timeScale = 1;
         position = 0;

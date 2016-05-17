@@ -18,14 +18,14 @@ public class WeaponCotroller : MonoBehaviour {
 	
 	IEnumerator MoveWeaponFunction()
 	{
-		yield return new WaitForSeconds(0.05f);
+		yield return new WaitForSeconds(0.01f);
 		MoveWeapon();
 		StartCoroutine(MoveWeaponFunction());
 	}
 	
 	void MoveWeapon()
 	{
-		transform.Translate(0,0.2f, 3f);
+		transform.Translate(0,0.2f, 0.6f);
 		//transform.Translate(0,0.1f, 1.5f);
 	}
 	

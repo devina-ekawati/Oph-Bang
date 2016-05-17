@@ -53,6 +53,7 @@ public class EnemyController : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
+
 		Debug.Log ("Trigger Collide");
 		if (other.tag == "Weapon")
 		{
@@ -81,7 +82,12 @@ public class EnemyController : MonoBehaviour {
 			//Debug.Log ("allow2");
 			GameControl.GetComponent<GameControl>().allowLaunchWeapon = true;
 		}
-		if (health <= 0)
+		if (health <= 0) {
+			Vector3 objectPosition = transform.position;
+			PoofManager.Instance.SpawnPoof(objectPosition);
 			Destroy (this.gameObject);
+			GameControl.GetComponent<GameControl>().score += health;
+
+		}
 	}
 }
