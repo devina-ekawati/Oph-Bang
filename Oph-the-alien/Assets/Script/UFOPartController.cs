@@ -9,6 +9,7 @@ public class UFOPartController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         int size = UFOPart.Length;
+
         numUFOPart = PlayerPrefs.GetInt("UFOPart");
         switch (numUFOPart)
         {

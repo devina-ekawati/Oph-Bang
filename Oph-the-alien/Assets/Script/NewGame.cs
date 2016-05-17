@@ -16,7 +16,7 @@ public class NewGame : MonoBehaviour {
 
 	public void PlayGame(){
 		PlayerPrefs.SetString ("PlayerName",name.text);
-		Application.LoadLevel ("OpeningStory");
+		Application.LoadLevel ("personal");
 		PlayerPrefs.SetInt ("PlayerDiamond",0);
 		PlayerPrefs.SetInt ("PlayerMoney",0);
 	}

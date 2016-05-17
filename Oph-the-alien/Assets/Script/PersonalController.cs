@@ -8,15 +8,17 @@ public class PersonalController : MonoBehaviour {
 	private bool showSubMenu = false;
 	public Text name, diamond, money;
 	public InputField NewName;
-	public GameObject [] popup;
-	public Sprite []hat, upper, lower, shoes;
-	private int popupon;
-	public Image [] body;
+	public GameObject [] popup, itemSelected;
+	public Sprite []hat, upper, lower, shoes, item;
+	private int popupon, itemNumberSelected;
+	public Image [] body, selected;
 	public AudioClip backMusic; 
 	public GameObject disable;
 	AudioSource fxSound; 
 	// Use this for initialization
 	void Start () {
+		itemNumberSelected = 0;
+		PlayerPrefs.SetInt("UFOPart",3);
 		popupon = -1;
 		SubMenu.SetActive (showSubMenu);
 		shadow.SetActive (false);
@@ -31,6 +33,8 @@ public class PersonalController : MonoBehaviour {
 		body [3].sprite = shoes [PlayerPrefs.GetInt ("shoes")];
 		Dressing ();
 
+		DeselectedItem ();
+
 		fxSound = GetComponent<AudioSource> ();
 		if (PlayerPrefs.GetInt ("sound") == 0) {
 			fxSound.Play ();
@@ -39,6 +43,20 @@ public class PersonalController : MonoBehaviour {
 			popup[i].SetActive(false);
 		}
 		close.SetActive (false);
+	}
+	public void DeselectedItem(){
+		for(int i=0; i<4; i++){
+			itemSelected[i].SetActive(false);
+		}
+	}
+	public void SelectItem(int number){
+		itemSelected [itemNumberSelected].SetActive (false);
+		itemSelected [number].SetActive (true);
+		itemNumberSelected = number;
+	}
+	public void SetItem(int number){
+		selected [itemNumberSelected].sprite = item [number];
+		PlayerPrefs.SetInt ("item"+itemNumberSelected, number);
 	}
 	public void SetSound(){
 		if (PlayerPrefs.GetInt ("sound")== 1) {
@@ -119,7 +137,9 @@ public class PersonalController : MonoBehaviour {
 	public void OpenMap(){
 		Application.LoadLevel("SelectScene");
 	}
-
+	public void ShowUfo(){
+		Application.LoadLevel ("UFO part");
+	}
 
 
 }
