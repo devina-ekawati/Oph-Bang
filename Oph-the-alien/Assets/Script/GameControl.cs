@@ -32,6 +32,10 @@ public class GameControl : MonoBehaviour {
 	public GameObject scoreReplay;
 	public GameObject scoreHome;
 	public GameObject scoreShare;
+	public Text scoreTimeText;
+	public Text scoreEnemyText;
+	public Text scoreItemText;
+	public Text scoreCoinText;
 
 	float totalTimeElapsed = 0;
 	int position;
@@ -146,14 +150,15 @@ public class GameControl : MonoBehaviour {
 		if (health <= 0) {
 			isGameOver = true;
 			int star = 0;
-			if (score > 10) {
+			if (score > 50) {
 				star = 1;
-			} else if (score > 30) {
+			} else if (score > 100) {
 				star = 2;
-			} else if (score > 50) {
+			} else if (score > 200) {
 				star = 3;
 			}
 			int coin = enemyKilled * 3 + (int)totalTimeElapsed * 2;
+			PlayerPrefs.SetInt ("coin",PlayerPrefs.GetInt ("coin") + coin);
 			showScoreMenu (star, (int)totalTimeElapsed, enemyKilled, itemObtained, coin);
 		}
 	}
@@ -220,6 +225,10 @@ public class GameControl : MonoBehaviour {
 		scoreReplay.SetActive(true);
 		scoreHome.SetActive(true);
 		scoreShare.SetActive(true);
+		scoreTimeText.text = time.ToString();
+		scoreEnemyText.text = enemy.ToString();
+		scoreItemText.text = item.ToString();
+		scoreCoinText.text = coin.ToString();
 	}
 
 	public void resumeGame () {
