@@ -3,6 +3,8 @@ using System.Collections;
 
 public class GenerateEnemyController : MonoBehaviour {
 
+	public GameObject GameControl;
+
     public GameObject enemyBaby;
 	public GameObject enemyKidGirl;
 	public GameObject enemyBigKid;
@@ -22,9 +24,10 @@ public class GenerateEnemyController : MonoBehaviour {
 
     void CreateEnemy()
     {
-		int randomEnemy = ((int)Random.Range(0, 3));
-		GameObject enemy = null;
-		switch (randomEnemy) {
+		if (!GameControl.GetComponent<GameControl> ().isGameOver) {
+			int randomEnemy = ((int)Random.Range(0, 3));
+			GameObject enemy = null;
+			switch (randomEnemy) {
 			case 0:
 				enemy = enemyBaby;
 				break;
@@ -36,10 +39,11 @@ public class GenerateEnemyController : MonoBehaviour {
 				break;
 			default:
 				break;
+			}
+			GameObject temp = (GameObject)Instantiate(enemy);
+			Vector3 pos = temp.transform.position;
+			int x = ((int)Random.Range(-1, 2)) * 5;
+			temp.transform.position = new Vector3(x, pos.y-5, pos.z);
 		}
-		GameObject temp = (GameObject)Instantiate(enemy);
-        Vector3 pos = temp.transform.position;
-        int x = ((int)Random.Range(-1, 2)) * 5;
-        temp.transform.position = new Vector3(x, pos.y-5, pos.z);        
     }
 }

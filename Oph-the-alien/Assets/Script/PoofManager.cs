@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PoofManager : MonoBehaviour {
 
-	public GameObject poof1;
+	public GameObject[] poofs;
 
 	private static PoofManager instance;
 	public static PoofManager Instance
@@ -32,7 +32,8 @@ public class PoofManager : MonoBehaviour {
 	public void SpawnPoof(Vector3 pos)
 	{
 		Debug.Log ("spawn poof");
-		GameObject newWeapon = (GameObject)Instantiate(poof1, pos, Quaternion.identity);
+		for(int i=0; i < poofs.Length; i++)
+			Instantiate(poofs[i], pos, Quaternion.identity);
 	}
 
 }

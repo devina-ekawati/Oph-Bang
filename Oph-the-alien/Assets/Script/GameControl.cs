@@ -17,16 +17,34 @@ public class GameControl : MonoBehaviour {
 	public GameObject buttonItem2;
 	public GameObject buttonItem3;
 	public GameObject buttonItem4;
+	public GameObject scoreMenu;
+	public GameObject star1;
+	public GameObject star2;
+	public GameObject star3;
+	public GameObject scoreTime;
+	public GameObject scoreEnemy;
+	public GameObject scoreItem;
+	public GameObject scoreCoin;
+	public GameObject scoreTimeTextBox;
+	public GameObject scoreEnemyTextBox;
+	public GameObject scoreItemTextBox;
+	public GameObject scoreCoinTextBox;
+	public GameObject scoreReplay;
+	public GameObject scoreHome;
+	public GameObject scoreShare;
+
 	float totalTimeElapsed = 0;
 	int position;
 	bool paused = false;
 	GameObject[] fixedObjects;
-	AudioSource fxSound; 
+	AudioSource fxSound;
 
 	public float healthBarWidth = 0.35f;
 	public float maxHealth = 100f;
 	public float health = 100f;
 	public int score = 0;
+	public int enemyKilled = 0;
+	public int itemObtained = 0;
 	public bool allowLaunchWeapon = true;
 	float lastWeaponLaunched;
 	private int curWeaponType = 0; //weapon yg sedang dipake (dari weapon yg dipilih)
@@ -34,18 +52,24 @@ public class GameControl : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		WeaponManager.Instance.SpawnWeapon(curWeaponType);
+		//WeaponManager.Instance.SpawnWeapon(curWeaponType);
 		hideMenu ();
+		hideScoreMenu ();
 		Time.timeScale = 1;
         position = 0;
 		fixedObjects = GameObject.FindGameObjectsWithTag("Fixed");
 		fxSound = GetComponent<AudioSource> ();
+		if (PlayerPrefs.GetInt ("sound") == 0) {
+			fxSound.Stop ();
+		}
+		alien.GetComponent<Animator> ().enabled = false;
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	//if(allowLaunchWeapon)
-	//WeaponManager.Instance.SpawnWeapon(curWeaponType);
+		//if(allowLaunchWeapon)
+			//WeaponManager.Instance.SpawnWeapon(curWeaponType);
 		if (isGameOver)
 		{
 			if (Input.GetKeyDown (KeyCode.Escape)) {
@@ -54,6 +78,12 @@ public class GameControl : MonoBehaviour {
 			return;
 		}
 		time.text = "" + (int)totalTimeElapsed;
+
+		if(alien.GetComponent<Animator> ().enabled == true){
+			if(totalTimeElapsed - lastWeaponLaunched > 0.4){
+				alien.GetComponent<Animator> ().enabled = false;
+			}
+		}
 
 		float lifebarWidth = healthBarWidth  * (health/100f);
 		float lifebarHeight = lifeBar.transform.localScale.y;
@@ -99,6 +129,7 @@ public class GameControl : MonoBehaviour {
 				//tembak
 				Debug.Log("Spawn Weapon");
 				if(Input.GetTouch(0).phase == TouchPhase.Began && allowLaunchWeapon){
+					alien.GetComponent<Animator> ().enabled = true;
 					WeaponManager.Instance.SpawnWeapon(curWeaponType);
 					allowLaunchWeapon = false;
 					lastWeaponLaunched = totalTimeElapsed;
@@ -114,6 +145,16 @@ public class GameControl : MonoBehaviour {
 
 		if (health <= 0) {
 			isGameOver = true;
+			int star = 0;
+			if (score > 10) {
+				star = 1;
+			} else if (score > 30) {
+				star = 2;
+			} else if (score > 50) {
+				star = 3;
+			}
+			int coin = enemyKilled * 3 + (int)totalTimeElapsed * 2;
+			showScoreMenu (star, (int)totalTimeElapsed, enemyKilled, itemObtained, coin);
 		}
 	}
 
@@ -150,6 +191,35 @@ public class GameControl : MonoBehaviour {
 			pauseObjects [i].SetActive (false);
 		}
 		Debug.Log ("lengthz" + pauseObjects.Length);
+	}
+
+	public void hideScoreMenu () {
+		GameObject[] pauseObjects = GameObject.FindGameObjectsWithTag ("ScoreMenu");
+		for (int i = 0; i < pauseObjects.Length; i++) {
+			pauseObjects [i].SetActive (false);
+		}
+		Debug.Log ("lengthz" + pauseObjects.Length);
+	}
+
+	public void showScoreMenu (int star, int time, int enemy, int item, int coin) {
+		scoreMenu.SetActive(true);
+		if(star>=1)
+			star1.SetActive(true);
+		if(star>=2)
+			star2.SetActive(true);
+		if(star>=3)
+			star3.SetActive(true);
+		scoreTime.SetActive(true);
+		scoreEnemy.SetActive(true);
+		scoreItem.SetActive(true);
+		scoreCoin.SetActive(true);
+		scoreTimeTextBox.SetActive(true);
+		scoreEnemyTextBox.SetActive(true);
+		scoreItemTextBox.SetActive(true);
+		scoreCoinTextBox.SetActive(true);
+		scoreReplay.SetActive(true);
+		scoreHome.SetActive(true);
+		scoreShare.SetActive(true);
 	}
 
 	public void resumeGame () {

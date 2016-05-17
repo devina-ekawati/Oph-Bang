@@ -14,13 +14,17 @@ public class EnemyController : MonoBehaviour {
 	float lastPoisonReduced = 0;
 	bool isFreeze = false;
 	bool isPoisoned = false;
+	public AudioSource hitSound;
+	private int fullHealth;
 
 	// Use this for initialization
 	void Start () {
+		fullHealth = health;
 		GameControl = GameObject.Find("Main Camera");
 		Time.timeScale = 1;
         startPosition = transform.position;
         StartCoroutine(MoveEnemyFunction());
+		hitSound = GetComponent<AudioSource> ();
 	}
 	
 	// Update is called once per frame
@@ -41,7 +45,8 @@ public class EnemyController : MonoBehaviour {
     IEnumerator MoveEnemyFunction()
     {
         yield return new WaitForSeconds(0.1f);
-        MoveEnemy();
+		if(!GameControl.GetComponent<GameControl>().isGameOver)
+        	MoveEnemy();
         StartCoroutine(MoveEnemyFunction());
     }
 
@@ -78,16 +83,25 @@ public class EnemyController : MonoBehaviour {
 					health -= 20;
 					break;
 			}
+			hitSound.Play();
 			Destroy (other.gameObject);
 			//Debug.Log ("allow2");
 			GameControl.GetComponent<GameControl>().allowLaunchWeapon = true;
 		}
 		if (health <= 0) {
+			StartCoroutine(DelayDestroy());
 			Vector3 objectPosition = transform.position;
 			PoofManager.Instance.SpawnPoof(objectPosition);
 			Destroy (this.gameObject);
-			GameControl.GetComponent<GameControl>().score += health;
+			GameControl.GetComponent<GameControl>().score += fullHealth;
+			GameControl.GetComponent<GameControl>().enemyKilled += 1;
 
 		}
+	}
+
+	IEnumerator DelayDestroy() {
+		print(Time.time);
+		yield return new WaitForSeconds(1);
+		print(Time.time);
 	}
 }
