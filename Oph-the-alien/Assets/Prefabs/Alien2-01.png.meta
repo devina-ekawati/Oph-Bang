@@ -1,0 +1,227 @@
+fileFormatVersion: 2
+guid: 4cf1b34fbe5496748a7d35e696698506
+timeCreated: 1463473812
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Alien2-01_0
+    21300002: Alien2-01_1
+    21300004: Alien2-01_2
+    21300006: Alien2-01_3
+    21300008: Alien2-01_4
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Alien2-01_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 6639
+        width: 1667
+        height: 1543
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 175.5, y: -41.754395}
+        - {x: 137.5, y: -47.754395}
+        - {x: 80.5, y: -77.754395}
+        - {x: 156.5, y: 82.245605}
+        - {x: 124.5, y: 146.2456}
+        - {x: 60.5, y: 146.2456}
+        - {x: -3.5, y: 141.2456}
+        - {x: -73.5, y: 109.245605}
+        - {x: -67.5, y: 61.245605}
+        - {x: -26.5, y: 4.2456055}
+        - {x: -42.5, y: 23.245605}
+        - {x: -78.5, y: 50.245605}
+        - {x: -124.5, y: 41.245605}
+        - {x: -126.5, y: 33.245605}
+        - {x: -126.5, y: -48.754395}
+        - {x: -80.5, y: -88.754395}
+        - {x: -68.5, y: -185.7544}
+        - {x: 62.5, y: -185.7544}
+        - {x: 163.5, y: -134.7544}
+        - {x: 193.5, y: -106.754395}
+        - {x: 193.5, y: -68.754395}
+    - name: Alien2-01_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 5034
+        width: 1667
+        height: 1619
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 143.5, y: 5.254883}
+        - {x: 116.5, y: 34.254883}
+        - {x: 92.5, y: 92.25488}
+        - {x: 44.5, y: 118.25488}
+        - {x: -17.5, y: 146.25488}
+        - {x: -19.5, y: 182.25488}
+        - {x: -42.5, y: 182.25488}
+        - {x: -129.5, y: 68.25488}
+        - {x: -119.5, y: 21.254883}
+        - {x: -80.5, y: -18.745117}
+        - {x: -42.5, y: -29.745117}
+        - {x: -208.5, y: -76.74512}
+        - {x: -208.5, y: -135.74512}
+        - {x: -195.5, y: -145.74512}
+        - {x: -129.5, y: -131.74512}
+        - {x: -57.5, y: -103.74512}
+        - {x: -65.5, y: -202.74512}
+        - {x: 66.5, y: -202.74512}
+        - {x: 60.5, y: -117.74512}
+        - {x: 117.5, y: -70.74512}
+        - {x: 143.5, y: -37.745117}
+    - name: Alien2-01_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3386
+        width: 1667
+        height: 1631
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 75.5, y: 99.50781}
+        - {x: -65.5, y: 164.50781}
+        - {x: -117.5, y: 164.50781}
+        - {x: -138.5, y: 59.507812}
+        - {x: -112.5, y: 1.5078125}
+        - {x: -47.5, y: -35.492188}
+        - {x: -82.5, y: -61.492188}
+        - {x: -100.5, y: -75.49219}
+        - {x: -143.5, y: -116.49219}
+        - {x: -188.5, y: -132.49219}
+        - {x: -202.5, y: -137.49219}
+        - {x: -202.5, y: -185.49219}
+        - {x: -115.5, y: -182.49219}
+        - {x: -55.5, y: -86.49219}
+        - {x: -64.5, y: -171.49219}
+        - {x: -62.5, y: -204.49219}
+        - {x: 66.5, y: -204.49219}
+        - {x: 61.5, y: -128.49219}
+        - {x: 55.5, y: -3.4921875}
+        - {x: 75.5, y: 64.50781}
+    - name: Alien2-01_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1680
+        width: 1667
+        height: 1687
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 202.5, y: -99.24805}
+        - {x: 202.5, y: 44.751953}
+        - {x: 195.5, y: 80.75195}
+        - {x: 160.5, y: 71.75195}
+        - {x: 141.5, y: 64.75195}
+        - {x: 101.5, y: 29.751953}
+        - {x: 54.5, y: -29.248047}
+        - {x: 104.5, y: 44.751953}
+        - {x: 104.5, y: 75.75195}
+        - {x: 5.5, y: 162.75195}
+        - {x: -65.5, y: 162.75195}
+        - {x: -79.5, y: 154.75195}
+        - {x: -74.5, y: 139.75195}
+        - {x: -63.5, y: 137.75195}
+        - {x: -141.5, y: 71.75195}
+        - {x: -174.5, y: 1.7519531}
+        - {x: -175.5, y: -2.2480469}
+        - {x: -175.5, y: -43.248047}
+        - {x: -126.5, y: -100.24805}
+        - {x: -83.5, y: -97.24805}
+        - {x: -64.5, y: -211.24805}
+        - {x: 63.5, y: -211.24805}
+        - {x: 65.5, y: -205.24805}
+        - {x: 81.5, y: -132.24805}
+        - {x: 184.5, y: -111.24805}
+    - name: Alien2-01_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1667
+        height: 1659
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 205.5, y: -61.5}
+        - {x: 191.5, y: -54.5}
+        - {x: 173.5, y: -42.5}
+        - {x: 167.5, y: -43.5}
+        - {x: 163.5, y: -47.5}
+        - {x: 138.5, y: -74.5}
+        - {x: 128.5, y: 58.5}
+        - {x: 121.5, y: 60.5}
+        - {x: 102.5, y: 51.5}
+        - {x: 115.5, y: 125.5}
+        - {x: 113.5, y: 142.5}
+        - {x: 103.5, y: 146.5}
+        - {x: 10.5, y: 146.5}
+        - {x: -105.5, y: 94.5}
+        - {x: -138.5, y: 19.5}
+        - {x: -138.5, y: -63.5}
+        - {x: -115.5, y: -80.5}
+        - {x: -62.5, y: -151.5}
+        - {x: -62.5, y: -207.5}
+        - {x: 64.5, y: -207.5}
+        - {x: 95.5, y: -143.5}
+        - {x: 192.5, y: -180.5}
+        - {x: 205.5, y: -115.5}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
