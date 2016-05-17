@@ -72,6 +72,10 @@ public class WeaponManager : MonoBehaviour {
 
 	void Start () {
 		//item1 = GameObject.Find  PlayerPrefs.GetString("item1");
+		PlayerPrefs.SetInt ("item1", 1);
+		PlayerPrefs.SetInt ("item2", 2);
+		PlayerPrefs.SetInt ("item3", 3);
+		PlayerPrefs.SetInt ("item4", 4);
 		selectedItem1 = getWeapon (PlayerPrefs.GetInt ("item1"));
 		selectedItem1ID = PlayerPrefs.GetInt ("item1");
 		selectedItem2 = getWeapon (PlayerPrefs.GetInt ("item2"));

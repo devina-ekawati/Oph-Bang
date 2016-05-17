@@ -51,7 +51,7 @@ public class GameControl : MonoBehaviour {
 	public int itemObtained = 0;
 	public bool allowLaunchWeapon = true;
 	float lastWeaponLaunched;
-	private int curWeaponType = 0; //weapon yg sedang dipake (dari weapon yg dipilih)
+	private int curWeaponType = 1; //weapon yg sedang dipake (dari weapon yg dipilih)
 	public int curWeaponID = 0; //id weapon (dari semua weapon)
 
 	// Use this for initialization
